@@ -31,7 +31,7 @@ var app = new Framework7({
 		},
 		pageInit: function (event, page) {
 		// fazer algo quando a página for inicializada
-      app.views.main.router.navigate('/carrinho/');
+     // app.views.main.router.navigate('/index/');
 
       $.getScript('js/index.js');
 
@@ -162,6 +162,9 @@ var app = new Framework7({
 		},
 		pageInit: function (event, page) {
 		// fazer algo quando a página for inicializada
+     
+     //app.views.main.router.navigate('/detalhes/');
+      $.getScript('js/detalhes.js');
 		},
 		pageBeforeRemove: function (event, page) {
 		// fazer algo antes da página ser removida do DOM

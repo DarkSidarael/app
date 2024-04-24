@@ -180,6 +180,14 @@ input {
     border-radius: 10px;
   }
 
+  .filter-btn.active{
+    background: var(--blue);
+    color: var(--branco);
+    border: 1px solid var(--blue);
+    
+    
+  }
+
   .row {
     flex-wrap: wrap;
     flex-direction: row;
@@ -236,6 +244,10 @@ input {
 
 .price{
     font-size: 20px;
+}
+
+.gelo{
+    background: var(--gelo) !important;
 }
 
 @media (min-width:992px){

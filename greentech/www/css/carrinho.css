@@ -48,6 +48,7 @@
     height: 120px;
     margin: auto;
     border-bottom: 1px solid var(--gelo);
+    padding: 10px 0px;
 }
 
 .area-img{
@@ -58,12 +59,16 @@
     justify-content: center;
     background: var(--gelo);
     border-radius: 20px;
+    
+    
 }
 
 .area-img img{
     max-width: 120px;
-    height: 120px;
+    height: 1200px;
     object-fit: contain;
+   
+    
 }
 
 .area-details{
@@ -72,6 +77,7 @@
     justify-content: center;
     flex-flow: column wrap;
     height: 100%;
+    
 }
 
 .sup{

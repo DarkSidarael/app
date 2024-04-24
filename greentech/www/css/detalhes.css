@@ -113,7 +113,7 @@ table{
 }
 
 th,td{
-    padding: 1px;
+    padding: 10px 5px;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     border-bottom: 1px solid #ddd;
@@ -122,7 +122,7 @@ th,td{
 }
 
 th{
-    background-color: #ddd;
+    background-color: #e6e5e5;
 }
 
 .flex-40{
