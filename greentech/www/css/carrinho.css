@@ -12,6 +12,15 @@
     justify-content: space-between;
     background: var(--branco);
     padding: 10px 0px;
+   
+}
+
+.cat{
+    padding-top: 10px;
+}
+
+.amor{
+  margin-right: 20px;  
 }
 
 .nav-top.cart a{
@@ -23,6 +32,7 @@
     border: 1px solid var(--gelo);
     border-radius: 50%;
     color: var(--preto);
+   
 }
 
 .nav-top.cart a:first-child{
@@ -50,6 +60,12 @@
     border-bottom: 1px solid var(--gelo);
     padding: 10px 0px;
 }
+
+.color-gray{
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
 
 .area-img{
     flex: 30%;

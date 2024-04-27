@@ -40,10 +40,10 @@ if(item){
 
 var carrinho= JSON.parse(localStorage.getItem('carrinho')) || [];
 
-fuction adicionarAoCarrinho(item, quantidade){
+function adicionarAoCarrinho(item, quantidade){
     var itemNoCarrinho = carrinho.find(c=> c.item.id === item.id);
 
-    if(itemCarrinho){
+    if(itemNoCarrinho){
         itemNoCarrinho.quantidade += quantidade;
         itemNoCarrinho.total_item = itemNoCarrinho.quantidade * item.preco_promocional;
     }else{
@@ -58,3 +58,17 @@ fuction adicionarAoCarrinho(item, quantidade){
 
 }
 
+$(".add-carrinho").on('click', function(){
+
+    adicionarAoCarrinho(item, 1);
+  
+    var  toastCenter = app.toast.create({
+        text: `${item.nome} adicionado ao carrinho.`,
+        position: 'center',
+        closeTimeout: 2000,
+      });
+
+      toastCenter.open();
+})
+
+    

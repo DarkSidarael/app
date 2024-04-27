@@ -35,8 +35,8 @@
 
                     <div class="nav-top cart">
                         <a href="/index/"><i class="ri-arrow-left-s-line"></i></a>
-                         <strong><i class="ri-shopping-cart-2-line"></i>Carrinho</strong>
-                        <a href="#" class="link popover-open" data-popover=".popover-menu"><i class="ri-more-fill"></i></a>
+                         <strong class="cat"><i class="ri-shopping-cart-2-line"></i>Carrinho</strong>
+                        <a href="#" class="amor link popover-open" data-popover=".popover-menu"><i class="ri-more-fill"></i></a>
                         <div class="popover popover-menu">
                             <div class="popover-angle"></div>
                             <div class="popover-inner">
@@ -52,7 +52,7 @@
                     </div>
                
                
-                    <div style=" margin-bottom: 100px;" class="toolbar toolbar-bottom">
+                    <div id="toolbarTotais" style=" margin-bottom: 100px;" class="toolbar toolbar-bottom">
                         <div id="totais" class="toolbar-inner display-flex align-items-center justify-content-center">
                             <div class="margin-top bd-bottom w-80 display-flex justify-content-space-between">
                                 <span>Subtotal:</span>
@@ -66,7 +66,7 @@
                     </div>
                
                
-                    <div class="toolbar toolbar-bottom">
+                    <div id="toolbarCheckout" class="toolbar toolbar-bottom">
                     <div class="toolbar-inner display-flex align-items-center justify-content-center">
                         <div class=" flex-100">
                             <button class="add-carrinho">Comprar 😎</button>
@@ -77,7 +77,7 @@
 
               <!-- Scrollable page content -->
                 <div class="page-content">
-                    <div id="listaCarrinho"></div>
+                    <div id="listaCarrinho">
                         <div class="item-carrinho">
                             <div class="area-img">
                                 <img src="img/default.png">
@@ -130,6 +130,7 @@
             </div>
         </div>
     </div>
+
     <!-- Path to Framework7 Library Bundle JS-->
     <script type="text/javascript" src="lib/framework7-bundle.min.js"></script>
 	<!-- jQuery -->
