@@ -4,7 +4,8 @@ if(localCarrinho){
     var carrinho = JSON.parse(localCarrinho);
     if(carrinho.length >0){
 
-
+         renderizarCarrinho();
+         calcularTotal();
     }else{
         carrinhoVazio();
     }
@@ -15,34 +16,82 @@ if(localCarrinho){
 function renderizarCarrinho(){
     $('#listaCarrinho').empty();
 
-    $.each(carrinho, funcition(index, itemCarrinho){
+    $.each(carrinho, function(index, itemCarrinho){
         var itemDiv = `
         <div class="item-carrinho">
-        <div class="area-img">
-            <img src="img/default.png">
+    <div class="area-img">
+        <img src="${itemCarrinho.item.imagem}">
+    </div>
+    <div class="area-details">
+        <div class="sup">
+            <span class="name-prod">
+                ${itemCarrinho.item.nome}
+            </span>
+            <a data-index="${index}" class="delete" href="#"><i class="mdi mdi-close"></i></a>
         </div>
-        <div class="area-details">
-            <div class="sup">
-                <span class="name-prod">
-                    Xbox Series X 
-                </span>
-                <a class="delete" href="#"><i class="mdi mdi-close"></i></a>
-            </div>
-            <div class="middle">
-                <span>1 TB </span>
-            </div>
-            <div class="preco-quantidade">
-                <span>R$ 99.500</span>
-                <div class="count">
-                    <a class="minus" href="#">-</a>
-                    <input readonly class="qtd-item" type="text" value="1">
-                    <a class="plus" href="#">+</a>
-                </div>
+        <div class="middle">
+            <span>${itemCarrinho.item.principal_caracteristica} </span>
+        </div>
+        <div class="preco-quantidade">
+            <span>R$ ${itemCarrinho.item.preco_promocional.toLocaleString('pt-BR', {Style: 'currency', currency:'BRL'})}</span>
+            <div class="count">
+                <a class="minus" " href="#">-</a>
+                <input readonly class="qtd-item" type="text" value="${itemCarrinho.quantidade}">
+                <a class="plus" data-index="${index}" href="#">+</a>
             </div>
         </div>
     </div>
+</div>
         `;
+        $("#listaCarrinho").append(itemDiv);
+
     });
+
+    $(".delete").on('click', function(){
+        var index = $(this).data('index');
+        console.log('O indice é: ', index);
+        
+        app.dialog.confirm('Tem certeza que quer remover este item?', 'Remover', function(){
+    
+                
+                carrinho.splice(index,1);
+                localStorage.setItem('carrinho', JSON.stringify(carrinho))
+                app.views.main.router.refreshPage();
+        });
+    
+    });
+
+    $(".minus").on('click', function(){
+        var index = $(this).data('index');
+        console.log('O indice é: ', index);
+
+        if(carrinho[index].quantidade >1){
+            carrinho[index].quantidade--;
+            carrinho[index].total_item = carrinho[index].quantidade * carrinho[index].item.preco_promocional;
+            localStorage.setItem('carrinho', JSON.stringify(carrinho));
+            app.views.main.router.refreshPage();
+        }else{
+            var itemname = carrinho[index].item.nome;
+            app.dialog.confirm(`Gostaria de remover <strong> ${itemname} </strong>?`, 'REMOVER', function(){
+                carrinho.splice(index, 1);
+            });
+        }
+
+     
+            
+             
+        });
+    
+    
+}
+
+function calcularTotal(){
+    var totalCarrinho = 0;
+    $.each(carrinho, function(index, itemCarrinho){
+        totalCarrinho += itemCarrinho.total_item;
+
+    });
+    $("#subtotal").html('R$ '+totalCarrinho.toLocaleString('pt-BR', {Style: 'currency', currency:'BRL'}));
 
 }
 
@@ -68,3 +117,4 @@ $("#esvaziar").on('click', function(){
         app.views.main.router.refreshPage();
     })
 })
+
