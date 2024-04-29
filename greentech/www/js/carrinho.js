@@ -35,7 +35,7 @@ function renderizarCarrinho(){
         <div class="preco-quantidade">
             <span>R$ ${itemCarrinho.item.preco_promocional.toLocaleString('pt-BR', {Style: 'currency', currency:'BRL'})}</span>
             <div class="count">
-                <a class="minus" " href="#">-</a>
+                <a class="minus" data-index="${index}"href="#">-</a>
                 <input readonly class="qtd-item" type="text" value="${itemCarrinho.quantidade}">
                 <a class="plus" data-index="${index}" href="#">+</a>
             </div>
@@ -65,23 +65,33 @@ function renderizarCarrinho(){
         var index = $(this).data('index');
         console.log('O indice é: ', index);
 
-        if(carrinho[index].quantidade >1){
+        if (carrinho[index].quantidade > 1){
             carrinho[index].quantidade--;
             carrinho[index].total_item = carrinho[index].quantidade * carrinho[index].item.preco_promocional;
             localStorage.setItem('carrinho', JSON.stringify(carrinho));
             app.views.main.router.refreshPage();
         }else{
             var itemname = carrinho[index].item.nome;
-            app.dialog.confirm(`Gostaria de remover <strong> ${itemname} </strong>?`, 'REMOVER', function(){
+            app.dialog.confirm(`Gostaria de remover <strong>${itemname}</strong>?`, 'REMOVER', function(){
                 carrinho.splice(index, 1);
+                localStorage.setItem('carrinho', JSON.stringify(carrinho));
+                renderizarCarrinho();
+                calcularTotal();
             });
-        }
-
-     
-            
-             
+        }            
         });
+
+        $(".plus").on('click', function(){
+            var index = $(this).data('index');
+            console.log('O indice é: ', index);
+            
+            carrinho[index].quantidade++;
+            carrinho[index].total_item = carrinho[index].quantidade * carrinho[index].item.preco_promocional;
+            localStorage.setItem('carrinho', JSON.stringify(carrinho));
+                renderizarCarrinho();
+                calcularTotal();
     
+        });
     
 }
 
